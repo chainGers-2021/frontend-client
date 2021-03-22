@@ -2,21 +2,29 @@ import React from "react";
 import "../App.css";
 import logo from "../assets/logo.png";
 import searchIcon from "../assets/search.png";
-const NavBar = () => {
+const NavBar = ({ handleCreate, home }) => {
   return (
     <div className="navBar">
       <img src={logo} alt="logo" className="logo navBarElement" />
       <div style={{ margin: 20 }}>
-        <a href="https://www.google.com">CREATE</a>
+        {home ? (
+          <button id="createBtnNavbar" onClick={handleCreate}>
+            CREATE
+          </button>
+        ) : (
+          <button id="createBtnNavbar" onClick={handleCreate}>
+            HOME
+          </button>
+        )}
       </div>
       <div style={{ margin: 20 }}>
         <a href="https://www.google.com">NGOs</a>
       </div>
-      <div>
-        <input placeholder="Search for pools" className="searchField" />
+      <div className="searchField">
+        <input placeholder="Search for pools" />
       </div>
-      <div>
-        <button class="searchButton">
+      <div class="searchButton">
+        <button>
           <img
             src={searchIcon}
             style={{ width: 20, height: 20 }}
