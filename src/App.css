@@ -1,79 +1,25 @@
-.navBar {
-  position: absolute;
-  width: 100%;
-  left: 0px;
-  top: 0px;
-  margin: 0;
-  padding: 0;
-  border-bottom: 1px solid gray;
-  display: flex;
-  align-items: center;
-}
-.homeBg {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  background: radial-gradient(
-    89.91% 80.13% at 72.64% 47.61%,
-    #324159 0%,
-    #303c4f 47.92%,
-    #2e3542 76.04%,
-    #23252b 100%
-  );
-  display: flex;
-  align-items: center;
-}
-.logo {
-  height: 50px;
-}
-
-.navBar a {
-  text-decoration: none;
-  color: white;
-}
-
-#createBtnNavbar {
-  background: transparent;
-  border: 0;
-  color: white;
-  font-weight: 400;
-}
-
-.navBar a:hover {
-  text-decoration: none;
-  color: white;
-}
-
-.searchField {
-  display: inline-block;
-}
-
-.searchField input {
-  height: 30px;
-  width: 300px;
+.arrowLeftBtn {
   background: #223a59;
   border: 1px solid #79d2e5;
   box-sizing: border-box;
-  border-radius: 32px;
-  text-align: center;
-}
-
-.searchButton {
-  display: inline-block;
-}
-
-.searchButton button {
+  box-shadow: 0px 4px 8px 7px rgba(0, 0, 0, 0.25);
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
+  position: absolute;
+  left: 15px;
+}
+.arrowRightBtn {
   background: #223a59;
   border: 1px solid #79d2e5;
   box-sizing: border-box;
-  height: 30px;
-  width: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  box-shadow: 0px 4px 8px 7px rgba(0, 0, 0, 0.25);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  position: absolute;
+  right: 15px;
 }
-
 .connectBtn {
   display: block;
   float: right;
@@ -93,49 +39,6 @@
 
   color: #79d2e5;
 }
-
-.arrowLeftBtn {
-  background: #223a59;
-  border: 1px solid #79d2e5;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 8px 7px rgba(0, 0, 0, 0.25);
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  position: absolute;
-  left: 15px;
-}
-
-.graph {
-  position: absolute;
-  left: 90px;
-}
-
-.poolContent {
-  height: 400px;
-  width: 350px;
-  background: #212429;
-  box-shadow: 0px 4px 41px 13px rgba(0, 0, 0, 0.25);
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  right: 90px;
-}
-
-.arrowRightBtn {
-  background: #223a59;
-  border: 1px solid #79d2e5;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 8px 7px rgba(0, 0, 0, 0.25);
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  position: absolute;
-  right: 15px;
-}
-
 .createBg {
   margin: 0;
   padding: 0;
@@ -151,57 +54,6 @@
     #272b33 89.04%,
     #23252b 100%
   );
-}
-
-.createPoolDiv {
-  width: 300px;
-  height: 400px;
-
-  background: #212429;
-  box-shadow: 0px 4px 28px -1px rgba(0, 0, 0, 0.25);
-  border-radius: 54px;
-  margin: 0px;
-  padding: 0px;
-  margin-top: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#dropdown-basic {
-  background: #223a59;
-  border: 1px solid #79d2e5;
-  color: #79d2e5;
-  border-radius: 10px;
-  display: block;
-  margin: auto;
-}
-
-.createPoolFields {
-  height: 35px;
-  width: 200px;
-  background: #223a59;
-  border: 1px solid #79d2e5;
-  box-sizing: border-box;
-  border-radius: 10px;
-  text-align: center;
-  display: block;
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-#targetPrice {
-  height: 35px;
-  width: 150px;
-  background: #223a59;
-  border: 1px solid #79d2e5;
-  box-sizing: border-box;
-  border-radius: 0 10px 10px 0;
-  text-align: center;
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  display: inline-block;
 }
 .createBtn {
   width: 140px;
@@ -225,7 +77,42 @@
   margin: auto;
   margin-top: 20px;
 }
+#createBtnNavbar {
+  background: transparent;
+  border: 0;
+  color: white;
+  font-weight: 400;
+}
+.createPoolDiv {
+  width: 300px;
+  height: 400px;
 
+  background: #212429;
+  box-shadow: 0px 4px 28px -1px rgba(0, 0, 0, 0.25);
+  border-radius: 54px;
+  margin: 0px;
+  padding: 0px;
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.createPoolDiv input:focus {
+  outline: none;
+}
+.createPoolFields {
+  height: 35px;
+  width: 200px;
+  background: #223a59;
+  border: 1px solid #79d2e5;
+  box-sizing: border-box;
+  border-radius: 10px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 .createPoolForm input::placeholder {
   color: rgba(121, 210, 229, 0.4);
 }
@@ -248,6 +135,107 @@
   font-weight: 500;
 }
 
-.createPoolDiv input:focus {
-  outline: none;
+#dropdown-basic {
+  background: #223a59;
+  border: 1px solid #79d2e5;
+  color: #79d2e5;
+  border-radius: 10px;
+  display: block;
+  margin: auto;
+}
+.graph {
+  position: absolute;
+  left: 90px;
+}
+.homeBg {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: radial-gradient(
+    89.91% 80.13% at 72.64% 47.61%,
+    #324159 0%,
+    #303c4f 47.92%,
+    #2e3542 76.04%,
+    #23252b 100%
+  );
+  display: flex;
+  align-items: center;
+}
+.logo {
+  height: 50px;
+}
+.navBar {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid gray;
+  display: flex;
+  align-items: center;
+}
+
+.navBar a {
+  text-decoration: none;
+  color: white;
+}
+
+.navBar a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.poolContent {
+  height: 400px;
+  width: 350px;
+  background: #212429;
+  box-shadow: 0px 4px 41px 13px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 90px;
+}
+.searchButton {
+  display: inline-block;
+}
+
+.searchButton button {
+  border-radius: 50%;
+  background: #223a59;
+  border: 1px solid #79d2e5;
+  box-sizing: border-box;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.searchField {
+  display: inline-block;
+}
+
+.searchField input {
+  height: 30px;
+  width: 300px;
+  background: #223a59;
+  border: 1px solid #79d2e5;
+  box-sizing: border-box;
+  border-radius: 32px;
+  text-align: center;
+}
+#targetPrice {
+  height: 35px;
+  width: 150px;
+  background: #223a59;
+  border: 1px solid #79d2e5;
+  box-sizing: border-box;
+  border-radius: 0 10px 10px 0;
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: inline-block;
 }
