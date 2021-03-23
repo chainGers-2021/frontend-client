@@ -2,20 +2,16 @@ import React from "react";
 import "../App.css";
 import logo from "../assets/logo.png";
 import searchIcon from "../assets/search.png";
+import { Link } from "react-router-dom";
 const NavBar = ({ handleCreate, home }) => {
   return (
     <div className="navBar">
       <img src={logo} alt="logo" className="logo navBarElement" />
       <div style={{ margin: 20 }}>
-        {home ? (
-          <button id="createBtnNavbar" onClick={handleCreate}>
-            CREATE
-          </button>
-        ) : (
-          <button id="createBtnNavbar" onClick={handleCreate}>
-            HOME
-          </button>
-        )}
+        <Link to="/">HOME</Link>
+      </div>
+      <div style={{ margin: 20 }}>
+        <Link to="/create">CREATE</Link>
       </div>
       <div style={{ margin: 20 }}>
         <a href="https://www.google.com">NGOs</a>

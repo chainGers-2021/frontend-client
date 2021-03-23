@@ -1,19 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "./components/NavBar";
-import PoolContent from "./components/PoolContent";
 import "./App.css";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import graph from "./assets/sampleGraph.png";
 import CreatePool from "./components/CreatePool";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Home from "./screens/Home";
+import { Switch, Route, useLocation } from "react-router-dom";
 
 const App = () => {
-  const [home, setHome] = useState(true);
-
-  const handleCreate = () => {
-    console.log(home);
-    home ? setHome(false) : setHome(true);
-  };
+  const [screen, setScreen] = useState("home");
+  let location = useLocation();
+  useEffect(() => {
+    if (location.pathname === "/") setScreen("home");
+    else setScreen(location.pathname.slice(1));
+  }, [location]);
 
   // return home ? (
   //   <div className="homeBg">
@@ -33,12 +32,25 @@ const App = () => {
   //     <CreatePool />
   //   </div>
   // );
+  // return (
+  //   <div className="createBg">
+  //     <NavBar handleCreate={handleCreate} home={home} />
+  //     <div>
+  //       <a href="http://www.freepik.com">Designed by kjpargeter / Freepik</a>
+  //     </div>
+  //   </div>
+  // );
   return (
-    <div className="createBg">
-      <NavBar handleCreate={handleCreate} home={home} />
-      <div>
-        <a href="http://www.freepik.com">Designed by kjpargeter / Freepik</a>
-      </div>
+    <div className={`${screen}Bg`}>
+      <NavBar />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/create">
+          <CreatePool />
+        </Route>
+      </Switch>
     </div>
   );
 };

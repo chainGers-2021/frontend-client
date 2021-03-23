@@ -22,8 +22,9 @@
 }
 .connectBtn {
   display: block;
-  float: right;
-  margin: auto;
+  position: absolute;
+  right: 10px;
+  top: 12px;
   width: 140px;
   height: 40px;
   border-radius: 13px;
@@ -200,6 +201,8 @@
 }
 .searchButton {
   display: inline-block;
+  position: relative;
+  margin: auto;
 }
 
 .searchButton button {
@@ -215,6 +218,9 @@
 }
 .searchField {
   display: inline-block;
+  position: absolute;
+  top: 30%;
+  left: 35%;
 }
 
 .searchField input {
