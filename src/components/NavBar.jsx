@@ -14,7 +14,7 @@ const NavBar = ({ handleCreate, home }) => {
         <Link to="/create">CREATE</Link>
       </div>
       <div style={{ margin: 20 }}>
-        <a href="https://www.google.com">NGOs</a>
+        <Link to="/marketplace">NGOs</Link>
       </div>
       <div className="searchField">
         <input placeholder="Search for pools" />

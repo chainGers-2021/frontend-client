@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+
 .arrowLeftBtn {
   background: #223a59;
   border: 1px solid #79d2e5;
@@ -19,6 +21,65 @@
   border-radius: 50%;
   position: absolute;
   right: 15px;
+}
+.card-author {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  color: #79d2e5;
+  margin-top: 7px;
+  opacity: 0.5;
+}
+.card-body {
+  padding: 0;
+  margin: 20px;
+  width: 200px;
+  height: 300px;
+  background: #223a59d9;
+  border: 1px solid #79d2e5;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 17px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 31px;
+  display: flex;
+  flex-direction: column;
+}
+.card-body:hover {
+  box-shadow: 0px 4px 17px 3px rgba(0, 0, 0, 0.7);
+  transform: scale(1.03);
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 15px;
+}
+.card-name {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  color: #79d2e5;
+}
+.card-price {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: #79d2e5;
+}
+.card-thumbnail {
+  width: 100%;
+  object-fit: contain;
+}
+.card-thumbnail-container {
+  width: 161px;
+  height: 161px;
+  display: flex;
+  align-self: center;
+  overflow: hidden;
+  margin-top: 20px;
+
+  border: 1px solid rgba(121, 210, 229, 0.19);
+  box-sizing: border-box;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 .connectBtn {
   display: block;
@@ -165,8 +226,25 @@
 .logo {
   height: 50px;
 }
+.marketplaceBg {
+  margin: 0;
+  padding: 65px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: radial-gradient(
+    76.01% 71.78% at 50% 31.79%,
+    #324159 0%,
+    #303c4f 31.2%,
+    #2e3542 53.67%,
+    #272b33 89.04%,
+    #23252b 100%
+  );
+}
 .navBar {
   position: absolute;
+  background: #303a4b;
+  opacity: 1;
   width: 100%;
   left: 0px;
   top: 0px;
