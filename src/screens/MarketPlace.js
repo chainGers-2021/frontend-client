@@ -30,7 +30,7 @@ const MarketPlace = () => {
         }}>
         Marketplace
       </div>
-      <div className="cards-grid">
+      <div className="card-grid">
         <ProductCard />
         <ProductCard />
         <ProductCard />
