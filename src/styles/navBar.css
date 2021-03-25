@@ -1,0 +1,87 @@
+.connectBtn {
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  width: 140px;
+  height: 40px;
+  border-radius: 13px;
+
+  background: #223a59;
+  border: 2px solid #79d2e5;
+  box-sizing: border-box;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 23px;
+  text-align: center;
+
+  color: #79d2e5;
+}
+#createBtnNavbar {
+  background: transparent;
+  border: 0;
+  color: white;
+  font-weight: 400;
+}
+
+.logo {
+  height: 50px;
+}
+.navBar {
+  position: absolute;
+  background: #303a4b;
+  opacity: 1;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid gray;
+  display: flex;
+  align-items: center;
+}
+
+.navBar a {
+  text-decoration: none;
+  color: white;
+}
+
+.navBar a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.searchButton {
+  display: inline-block;
+  position: relative;
+  margin: auto;
+}
+
+.searchButton button {
+  border-radius: 50%;
+  background: #223a59;
+  border: 1px solid #79d2e5;
+  box-sizing: border-box;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.searchField {
+  display: inline-block;
+  position: absolute;
+  top: 30%;
+  left: 35%;
+}
+
+.searchField input {
+  height: 30px;
+  width: 300px;
+  background: #223a59;
+  border: 1px solid #79d2e5;
+  box-sizing: border-box;
+  border-radius: 32px;
+  text-align: center;
+}

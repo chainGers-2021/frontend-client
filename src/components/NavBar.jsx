@@ -1,9 +1,9 @@
 import React from "react";
-import "../App.css";
+import "../styles/navBar.css";
 import logo from "../assets/logo.png";
 import searchIcon from "../assets/search.png";
 import { Link } from "react-router-dom";
-const NavBar = ({ handleCreate, home }) => {
+const NavBar = () => {
   return (
     <div className="navBar">
       <img src={logo} alt="logo" className="logo navBarElement" />

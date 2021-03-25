@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+import "../styles/poolContent.css";
 
 const PoolContent = () => {
   return <div className="poolContent">Woohooo</div>;

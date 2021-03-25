@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+import "../styles/createPool.css";
 import Dropdown from "react-bootstrap/Dropdown";
 
 const CreatePool = () => {

@@ -1,0 +1,95 @@
+.createBtn {
+  width: 140px;
+  height: 40px;
+  border-radius: 13px;
+
+  background: #223a59;
+  border: 2px solid #79d2e5;
+  box-sizing: border-box;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  color: #79d2e5;
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+}
+.createPoolDiv {
+  width: 300px;
+  height: 400px;
+
+  background: #212429;
+  box-shadow: 0px 4px 28px -1px rgba(0, 0, 0, 0.25);
+  border-radius: 54px;
+  margin: 0px;
+  padding: 0px;
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.createPoolDiv input:focus {
+  outline: none;
+}
+.createPoolFields {
+  height: 35px;
+  width: 200px;
+  background: #223a59;
+  border: 1px solid #79d2e5;
+  box-sizing: border-box;
+  border-radius: 10px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.createPoolForm input::placeholder {
+  color: rgba(121, 210, 229, 0.4);
+}
+
+.createPoolForm input {
+  color: rgb(121, 209, 229);
+}
+
+.currency {
+  background: #223a59;
+  width: 50px;
+  height: 35px;
+  border: 1px solid #79d2e5;
+  display: inline-block;
+  border-radius: 10px 0 0 10px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+#dropdown-basic {
+  background: #223a59;
+  border: 1px solid #79d2e5;
+  color: #79d2e5;
+  border-radius: 10px;
+  display: block;
+  margin: auto;
+}
+#targetPrice {
+  height: 35px;
+  width: 150px;
+  background: #223a59;
+  border: 1px solid #79d2e5;
+  box-sizing: border-box;
+  border-radius: 0 10px 10px 0;
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
