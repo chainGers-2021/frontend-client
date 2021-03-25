@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import sampleCard from "../assets/sampleCard.png";
+import sampleCard from "../assets/sampleCard.jpg";
 
 const ProductCard = () => {
   return (
