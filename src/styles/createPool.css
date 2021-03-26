@@ -19,6 +19,7 @@
   display: block;
   margin: auto;
   margin-top: 20px;
+  overflow: hidden;
 }
 .createPoolDiv {
   width: 300px;

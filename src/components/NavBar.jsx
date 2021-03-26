@@ -3,7 +3,7 @@ import "../styles/navBar.css";
 import logo from "../assets/logo.png";
 import searchIcon from "../assets/search.png";
 import { Link } from "react-router-dom";
-const NavBar = () => {
+const NavBar = ({ handleConnect, accounts }) => {
   return (
     <div className="navBar">
       <img src={logo} alt="logo" className="logo navBarElement" />
@@ -29,7 +29,9 @@ const NavBar = () => {
         </button>
       </div>
       <div>
-        <button className="connectBtn">Connect Wallet</button>
+        <button onClick={() => handleConnect()} className="connectBtn">
+          {accounts}
+        </button>
       </div>
     </div>
   );
