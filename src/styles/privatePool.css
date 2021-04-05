@@ -1,0 +1,15 @@
+.graph {
+  height: 400px;
+  width: 600px;
+  margin: auto;
+  margin-right: 5px;
+  margin-top: 50px;
+}
+
+.privateBody {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}

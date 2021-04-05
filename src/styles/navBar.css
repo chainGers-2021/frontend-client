@@ -58,7 +58,7 @@
   margin: auto;
 }
 
-.searchButton button {
+.searchButton a {
   border-radius: 50%;
   background: #223a59;
   border: 1px solid #79d2e5;

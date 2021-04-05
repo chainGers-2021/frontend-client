@@ -2,5 +2,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   row-gap: 140px;
-  margin-top: 40px;
+  margin-top: 0;
+}
+
+.carouselContainer {
+  height: 600px;
+  width: 900px;
+  margin: 20px;
 }

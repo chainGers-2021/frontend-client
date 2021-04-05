@@ -4,6 +4,7 @@ import particlesConfig from "../particle-config";
 import "../styles/marketPlace.css";
 
 import ProductCard from "../components/ProductCard";
+import MarketCarousel from "../components/MarketCarousel";
 
 const MarketPlace = () => {
   return (
@@ -18,17 +19,12 @@ const MarketPlace = () => {
         style={{
           display: "flex",
           width: "100%",
-          height: 100,
           justifyContent: "center",
           alignItems: "center",
-          fontFamily: "'Righteous', cursive",
-          fontStyle: "normal",
-          fontWeight: "normal",
-          fontSize: 60,
-          color: "#79D2E5",
-          textShadow: "2px 2px black",
         }}>
-        Marketplace
+        <div className="carouselContainer">
+          <MarketCarousel />
+        </div>
       </div>
       <div className="card-grid">
         <ProductCard />

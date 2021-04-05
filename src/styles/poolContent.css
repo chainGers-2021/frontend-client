@@ -1,12 +1,117 @@
 .poolContent {
   height: 400px;
-  width: 350px;
+  width: 300px;
   background: #212429;
   box-shadow: 0px 4px 41px 13px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  right: 90px;
+  margin: auto;
+  margin-left: 100px;
+}
+
+.btnGrp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.createBtn {
+  width: 90px;
+  height: 35px;
+  border-radius: 9px;
+
+  background: #223a59;
+  border: 2px solid #79d2e5;
+  box-sizing: border-box;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  color: #79d2e5;
+  display: inline-block;
+  margin: auto;
+  margin-top: 20px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+#poolAmount {
+  width: 250px;
+}
+
+.poolContent input:focus {
+  outline: none;
+}
+.privatePoolFields {
+  height: 35px;
+  background: #223a59;
+  border: 1px solid #79d2e5;
+  box-sizing: border-box;
+  border-radius: 10px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.privatePoolForm input::placeholder {
+  color: rgba(121, 210, 229, 0.4);
+}
+
+.privatePoolForm input {
+  color: rgb(121, 209, 229);
+}
+
+.currency {
+  background: #223a59;
+  width: 50px;
+  height: 35px;
+  border: 1px solid #79d2e5;
+  display: inline-block;
+  border-radius: 10px 0 0 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+#dropdown-basic {
+  background: #223a59;
+  border: 1px solid #79d2e5;
+  color: #79d2e5;
+  border-radius: 10px;
+  display: block;
+  margin: auto;
+}
+#privateTargetPrice {
+  height: 35px;
+  width: 190px;
+  background: #223a59;
+  border: 1px solid #79d2e5;
+  box-sizing: border-box;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: block;
+}
+.targetPriceDiv {
+  border: 1px solid white;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#tokenName {
+  width: 100px;
+  border: 1.5px solid #79d2e5;
 }

@@ -20,13 +20,13 @@ const NavBar = ({ handleConnect, accounts }) => {
         <input placeholder="Search for pools" />
       </div>
       <div class="searchButton">
-        <button>
+        <Link to="/privatepool">
           <img
             src={searchIcon}
             style={{ width: 20, height: 20 }}
             alt="search icon"
           />
-        </button>
+        </Link>
       </div>
       <div>
         <button onClick={() => handleConnect()} className="connectBtn">

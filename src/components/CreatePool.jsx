@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../styles/createPool.css";
 import Dropdown from "react-bootstrap/Dropdown";
-import Web3 from "web3";
 
 const CreatePool = ({ createPool }) => {
   const [tokenName, setTokenName] = useState("Select Token");

@@ -5,6 +5,7 @@ import CreatePool from "./components/CreatePool";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./screens/Home";
 import MarketPlace from "./screens/MarketPlace";
+import PrivatePool from "./screens/PrivatePool";
 import { Switch, Route, useLocation } from "react-router-dom";
 // import Web3 from "web3";
 
@@ -64,6 +65,9 @@ const App = () => {
         </Route>
         <Route exact path="/marketplace">
           <MarketPlace />
+        </Route>
+        <Route exact path="/privatepool">
+          <PrivatePool />
         </Route>
       </Switch>
     </div>

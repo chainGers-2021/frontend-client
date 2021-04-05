@@ -1,21 +1,21 @@
 import React from "react";
 import "../styles/Home.css";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import graph from "../assets/sampleGraph.png";
+import Graph from "../components/Graph";
 import PoolContent from "../components/PoolContent";
 
 const Home = () => {
   return (
-    <>
+    <div className="homeBody">
       <button className="arrowLeftBtn">
         <FaAngleLeft style={{ color: "#79D2E5", fontSize: 20 }} />
       </button>
-      <img src={graph} className="graph" alt="sampleGraph" />
+      <Graph className="graph" />
       <PoolContent />
       <button className="arrowRightBtn">
         <FaAngleRight style={{ color: "#79D2E5", fontSize: 20 }} />
       </button>
-    </>
+    </div>
   );
 };
 

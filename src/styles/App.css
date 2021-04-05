@@ -90,6 +90,21 @@
   align-items: center;
 }
 
+.privatepoolBg {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: radial-gradient(
+    89.91% 80.13% at 72.64% 47.61%,
+    #324159 0%,
+    #303c4f 47.92%,
+    #2e3542 76.04%,
+    #23252b 100%
+  );
+  display: flex;
+  align-items: center;
+}
+
 .marketplaceBg {
   margin: 0;
   padding: 65px;
