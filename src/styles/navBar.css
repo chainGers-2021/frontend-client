@@ -17,7 +17,11 @@
   text-align: center;
 
   color: #79d2e5;
+  overflow: hidden;
+
+  padding: 8px;
 }
+
 #createBtnNavbar {
   background: transparent;
   border: 0;

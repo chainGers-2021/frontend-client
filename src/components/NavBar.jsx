@@ -1,8 +1,9 @@
-import React from "react";
+import { Link } from "react-router-dom";
+
 import "../styles/navBar.css";
 import logo from "../assets/logo.png";
 import searchIcon from "../assets/search.png";
-import { Link } from "react-router-dom";
+
 const NavBar = ({ handleConnect, accounts }) => {
   return (
     <div className="navBar">
@@ -28,11 +29,9 @@ const NavBar = ({ handleConnect, accounts }) => {
           />
         </Link>
       </div>
-      <div>
-        <button onClick={() => handleConnect()} className="connectBtn">
-          {accounts}
-        </button>
-      </div>
+      <button onClick={() => handleConnect()} className="connectBtn">
+        {accounts[0]}
+      </button>
     </div>
   );
 };

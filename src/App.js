@@ -1,52 +1,74 @@
-import React, { useState, useEffect } from "react";
-import NavBar from "./components/NavBar";
-import "./styles/App.css";
-import CreatePool from "./components/CreatePool";
+import Web3 from "web3";
+import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Home from "./screens/Home";
-import MarketPlace from "./screens/MarketPlace";
-import PrivatePool from "./screens/PrivatePool";
 import { Switch, Route, useLocation } from "react-router-dom";
-// import Web3 from "web3";
+import OZ from "@openzeppelin/contracts/build/contracts/ERC20.json";
+
+import "./styles/App.css";
+import Home from "./screens/Home";
+import NavBar from "./components/NavBar";
+import Comptroller from "./assets/info.json";
+import PrivatePool from "./screens/PrivatePool";
+import MarketPlace from "./screens/MarketPlace";
+import CreatePool from "./components/CreatePool";
+import PrivatePools from "./assets/PrivatePool.json";
+
+const GetComptrollerContract = async (
+  web3,
+  setComptrollerContract,
+  setERC20,
+  setPrivatePoolContract
+) => {
+  const ComptrollerContract = await new web3.eth.Contract(
+    Comptroller.abi,
+    Comptroller.address
+  );
+
+  const linkAddress = "0xad5ce863ae3e4e9394ab43d4ba0d80f419f61789";
+
+  const ERC20 = await new web3.eth.Contract(OZ.abi, linkAddress);
+
+  const PrivatePoolContract = await new web3.eth.Contract(
+    PrivatePools.abi,
+    PrivatePools.address
+  );
+
+  setERC20(ERC20);
+  setComptrollerContract(ComptrollerContract);
+  setPrivatePoolContract(PrivatePoolContract);
+};
 
 const App = () => {
   const [screen, setScreen] = useState("home");
   const [web3, setWeb3] = useState(null);
   const [accounts, setAccounts] = useState(["Connect Wallet"]);
+  const [ERC20, setERC20] = useState(null);
+  const [comptrollerContract, setComptrollerContract] = useState(null);
+  const [privatePoolContract, setPrivatePoolContract] = useState(null);
 
   let location = useLocation();
+
   const handleConnect = async () => {
-    let x;
-    try {
-      x = await window.web3.currentProvider.enable();
-    } catch (error) {
-      console.log(error);
+    let accounts;
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+      accounts = await window.ethereum.enable();
     }
-    setAccounts(x);
+
+    setAccounts(accounts);
     setWeb3(window.web3);
-    console.log("State accounts:", accounts);
   };
 
-  const createPool = async (tokenName, poolName, targetPrice) => {
-    // Set state to loading
-    console.log(tokenName);
-    console.log(poolName);
-    console.log(targetPrice);
-
-    await new Promise((r) => setTimeout(r, 5000));
-
-    // Two transactions
-    // 20 seconds.
-    // import info.json
-    // Create factory instance
-    // call createPool()
-    // let newAccount = await web3.eth.accounts.create();
-    // await factoryV2.methods
-    //   .createPool("LINK", "TEST", 50, newAccount.address)
-    //   .send({ from: admin });
-
-    // Set state to unloading + redirect to transaction page with argument tx()+args
-  };
+  useEffect(() => {
+    if (web3) {
+      GetComptrollerContract(
+        web3,
+        setComptrollerContract,
+        setERC20,
+        setPrivatePoolContract
+      );
+    }
+  }, [web3]);
 
   useEffect(() => {
     if (location.pathname === "/") setScreen("home");
@@ -58,10 +80,18 @@ const App = () => {
       <NavBar handleConnect={handleConnect} accounts={accounts} />
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home
+            address={accounts[0]}
+            ERC20={ERC20}
+            comptrollerContract={comptrollerContract}
+          />
         </Route>
         <Route exact path="/create">
-          <CreatePool createPool={createPool} />
+          <CreatePool
+            privatePoolContract={privatePoolContract}
+            address={accounts[0]}
+            web3={web3}
+          />
         </Route>
         <Route exact path="/marketplace">
           <MarketPlace />
