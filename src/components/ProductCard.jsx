@@ -1,14 +1,16 @@
 import sampleCard from "../assets/sampleCard.jpg";
 
-const ProductCard = () => {
+const ProductCard = (props) => {
   return (
     <div className="card-body">
       <div className="card-thumbnail-container">
         <img src={sampleCard} className="card-thumbnail" alt="Thumbnail" />
       </div>
-      <div className="card-author">BASTARD GAN PUNKS V2</div>
-      <div className="card-name">BASTARD GAN PUNK V2 #7197</div>
-      <div className="card-price">$50,000</div>
+
+      <div className="card-author">{props.address}</div>
+      <div className="card-name">{props.pair}</div>
+      <div className="card-price">{props.locked}</div>
+      <div className="card-price">{props.NGO}</div>
     </div>
   );
 };

@@ -11,7 +11,7 @@ const MarketPlace = () => {
     <div
       style={{
         position: "fixed",
-        width: "100%",
+        width: "  100%",
         height: "100%",
         overflow: "scroll",
       }}
@@ -28,17 +28,80 @@ const MarketPlace = () => {
           <MarketCarousel />
         </div>
       </div>
+
       <div className="card-grid">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        <ProductCard
+          address="myaddress"
+          pair="ETH/USD/BTC"
+          locked="50000"
+          NGO="UNICEF"
+        />
+        <ProductCard
+          address="myaddress"
+          pair="ETH/USD/BTC"
+          locked="50000"
+          NGO="UNICEF"
+        />
+        <ProductCard
+          address="myaddress"
+          pair="ETH/USD/BTC"
+          locked="50000"
+          NGO="UNICEF"
+        />
+        <ProductCard
+          address="myaddress"
+          pair="ETH/USD/BTC"
+          locked="50000"
+          NGO="UNICEF"
+        />
+        <ProductCard
+          address="myaddress"
+          pair="ETH/USD/BTC"
+          locked="50000"
+          NGO="UNICEF"
+        />
+        <ProductCard
+          address="myaddress"
+          pair="ETH/USD/BTC"
+          locked="50000"
+          NGO="UNICEF"
+        />
+        <ProductCard
+          address="myaddress"
+          pair="ETH/USD/BTC"
+          locked="50000"
+          NGO="UNICEF"
+        />
+        <ProductCard
+          address="myaddress"
+          pair="ETH/USD/BTC"
+          locked="50000"
+          NGO="UNICEF"
+        />
+        <ProductCard
+          address="myaddress"
+          pair="ETH/USD/BTC"
+          locked="50000"
+          NGO="UNICEF"
+        />
+        <ProductCard
+          address="myaddress"
+          pair="ETH/USD/BTC"
+          locked="50000"
+          NGO="UNICEF"
+        />
+        <ProductCard
+          address="myaddress"
+          pair="ETH/USD/BTC"
+          locked="50000"
+          NGO="UNICEF"
+        />
+        <ProductCard
+          address="myaddress"
+          pair="ETH/USD/BTC"
+          locked="50000"
+          NGO="UNICEF"
+        />
       </div>
       <Particles params={particlesConfig} />
     </div>
