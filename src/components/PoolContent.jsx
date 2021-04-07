@@ -7,9 +7,6 @@ const toWei = (x) => {
 
 const PoolContent = ({ address, comptrollerContract, data, ERC20 }) => {
   const [amount, setAmount] = useState(null);
-
-  console.log(data);
-
   const deposit = async (e) => {
     e.preventDefault();
     if (comptrollerContract) {

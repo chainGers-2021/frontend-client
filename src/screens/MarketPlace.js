@@ -14,14 +14,16 @@ const MarketPlace = () => {
         width: "100%",
         height: "100%",
         overflow: "scroll",
-      }}>
+      }}
+    >
       <div
         style={{
           display: "flex",
           width: "100%",
           justifyContent: "center",
           alignItems: "center",
-        }}>
+        }}
+      >
         <div className="carouselContainer">
           <MarketCarousel />
         </div>
