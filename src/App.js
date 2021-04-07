@@ -97,7 +97,13 @@ const App = () => {
           <MarketPlace />
         </Route>
         <Route exact path="/privatepool">
-          <PrivatePool />
+          <PrivatePool
+            address={accounts[0]}
+            ERC20={ERC20}
+            comptrollerContract={comptrollerContract}
+            privatePoolContract={privatePoolContract}
+            web3={web3}
+          />
         </Route>
       </Switch>
     </div>

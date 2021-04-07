@@ -32,9 +32,15 @@
   align-items: center;
   justify-content: center;
 }
+
+.createPoolDiv label {
+  color: white;
+}
+
 .createPoolDiv input:focus {
   outline: none;
 }
+
 .createPoolFields {
   height: 35px;
   width: 200px;

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../styles/poolContent.css";
 
 const toWei = (x) => {
@@ -5,6 +6,10 @@ const toWei = (x) => {
 };
 
 const PoolContent = ({ address, comptrollerContract, data, ERC20 }) => {
+  const [amount, setAmount] = useState(null);
+
+  console.log(data);
+
   const deposit = async (e) => {
     e.preventDefault();
     if (comptrollerContract) {
@@ -13,7 +18,12 @@ const PoolContent = ({ address, comptrollerContract, data, ERC20 }) => {
         .send({ from: address })
         .then(async (tx) => {
           await comptrollerContract.methods
-            .depositERC20('"Test2"', toWei(0.5), '"LINK"', false)
+            .depositERC20(
+              data.name,
+              toWei(amount),
+              data.symbol,
+              data.privatePool
+            )
             .send({ from: address })
             .then((tx) => console.log(tx))
             .catch((err) => console.log(err));
@@ -27,7 +37,7 @@ const PoolContent = ({ address, comptrollerContract, data, ERC20 }) => {
 
     if (comptrollerContract) {
       await comptrollerContract.methods
-        .withdrawERC20("Test2", toWei(0.5), false)
+        .withdrawERC20(data.name, toWei(amount), data.privatePool)
         .then((tx) => console.log(tx))
         .catch((err) => console.log(err));
     }
@@ -44,13 +54,29 @@ const PoolContent = ({ address, comptrollerContract, data, ERC20 }) => {
           readOnly
         />
         <input
+          value={data.name}
+          placeholder="Pool Name"
+          className="privatePoolFields"
+          readOnly
+        />
+        <input
           value={data.totalDeposit}
           placeholder="Pool Amount"
           className="privatePoolFields"
           id="poolAmount"
           readOnly
         />
-        <input placeholder="Target Price" id="privateTargetPrice" />
+        <input
+          placeholder="Amount"
+          id="privateTargetPrice"
+          value={amount ? amount : ""}
+          onChange={(e) => {
+            let { value } = e.target;
+            value = value === "" ? null : value;
+            setAmount(value);
+          }}
+          type="number"
+        />
         <div className="btnGrp">
           <button className="createBtn" onClick={deposit}>
             Deposit
