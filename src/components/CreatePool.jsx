@@ -58,39 +58,41 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
       <form className="createPoolForm">
         <Dropdown>
           <Dropdown.Toggle className="selectTokens" id="dropdown-basic">
-            {tokenName ? tokenName : "Select Token"}
+            {tokenName ? tokenName : "Select Pair"}
           </Dropdown.Toggle>
           <Dropdown.Menu className="super-colors">
             <Dropdown.Item
               as="button"
               onClick={(e) => {
                 e.preventDefault();
-                setTokenName("LINK");
+                setTokenName("LINK/USD");
               }}
             >
-              LINK
+              LINK/USD
             </Dropdown.Item>
             <Dropdown.Item
               as="button"
               onClick={(e) => {
                 e.preventDefault();
-                setTokenName("ETH");
+                setTokenName("ETH/USD");
               }}
             >
-              ETH
+              ETH/USD
             </Dropdown.Item>
             <Dropdown.Item
               as="button"
               onClick={(e) => {
                 e.preventDefault();
-                setTokenName("WBTC");
+                setTokenName("WBTC/USD");
               }}
             >
-              WBTC
+              WBTC/USD
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
+
         <br />
+
         <input
           value={poolName ? poolName : ""}
           placeholder="Pool Name"
@@ -101,23 +103,31 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
             setPoolName(value);
           }}
         />
+
         <br />
-        <input placeholder="$" className="currency" readOnly />
-        <input
-          value={targetPrice ? targetPrice : ""}
-          placeholder="Target Price"
-          id="targetPrice"
-          onChange={(event) => {
-            let { value } = event.target;
-            value = parseInt(value) <= 0 ? null : parseInt(value);
-            setTargetPrice(value);
-          }}
-          type="number"
-        />
+
+        <div className=" priceShower">
+          <input placeholder="USD" className="currency" readOnly />
+
+          <input
+            value={targetPrice ? targetPrice : ""}
+            placeholder="Target Price"
+            id="targetPrice"
+            onChange={(event) => {
+              let { value } = event.target;
+              value = parseInt(value) <= 0 ? null : parseInt(value);
+              setTargetPrice(value);
+            }}
+            type="number"
+          />
+        </div>
+
         <br />
+        
         <button onClick={createPool} className="createBtn">
           Create Pool
         </button>
+      
       </form>
     </div>
   );

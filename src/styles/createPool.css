@@ -1,26 +1,38 @@
+.priceShower{
+  margin-left: 1.75em;
+}
+
+.selectTokens{
+  width: 10em;
+}
+
 .createBtn {
   border-radius: 13px;
-
-  background: #223a59;
+  background: #79d2e5;
   border: 2px solid #79d2e5;
   box-sizing: border-box;
-
   font-weight: 500;
-  font-size: 14px;
-  line-height: 23px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
+  width: 10em;
+  height: 2.5em;
+  font-size: 25px;
+  font-weight: 800;
   color: #79d2e5;
-  display: block;
+  display:  block;
   margin: auto;
-  margin-top: 20px;
   overflow: hidden;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  color: #212429;
 }
+
+.createBtn:hover{
+  background:#212429;
+  color: #79d2e5;
+  }
+
 .createPoolDiv {
-  width: 300px;
-  height: 400px;
+  width: 450px;
+  height: 500px;
 
   background: #212429;
   box-shadow: 0px 4px 28px -1px rgba(0, 0, 0, 0.25);
@@ -42,8 +54,9 @@
 }
 
 .createPoolFields {
-  height: 35px;
-  width: 200px;
+  font-size: 14px;
+  height: 50px;
+  width: 300px;
   background: #223a59;
   border: 1px solid #79d2e5;
   box-sizing: border-box;
@@ -60,12 +73,13 @@
 
 .createPoolForm input {
   color: rgb(121, 209, 229);
+  font-size: 1em;
 }
 
 .currency {
   background: #223a59;
-  width: 50px;
-  height: 35px;
+  width: 4em;
+  height: 3em;
   border: 1px solid #79d2e5;
   display: inline-block;
   border-radius: 10px 0 0 10px;
@@ -73,7 +87,10 @@
   margin-top: 20px;
   margin-bottom: 20px;
   text-align: center;
-  font-weight: 500;
+  font-weight: 800;
+  color: #F6F740;
+  
+
 }
 
 #dropdown-basic {
@@ -85,7 +102,7 @@
   margin: auto;
 }
 #targetPrice {
-  height: 35px;
+  height: 3em;
   width: 150px;
   background: #223a59;
   border: 1px solid #79d2e5;
@@ -96,4 +113,18 @@
   margin-top: 20px;
   margin-bottom: 20px;
   display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
