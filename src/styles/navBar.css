@@ -1,4 +1,4 @@
-.title{
+.title {
   margin-left: 1.5em;
 }
 .options {
@@ -90,6 +90,10 @@
   display: inline-block;
   margin-left: 30em;
   color: azure;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .searchField input {
@@ -102,4 +106,5 @@
   text-align: center;
 
   color: azure;
+  outline: none;
 }

@@ -1,34 +1,30 @@
-.priceShower{
-  margin-left: 3.6em;
+.priceShower {
+  display: flex;
+  justify-content: center;
+  margin: 8px 0;
 }
 
-.selectTokens{
+.selectTokens {
   width: 10em;
 }
 
 .createBtn {
+  width: fit-content;
   border-radius: 13px;
   background: #79d2e5;
   border: 2px solid #79d2e5;
   box-sizing: border-box;
-  font-weight: 500;
-  width: 10em;
-  height: 2.5em;
-  font-size: 25px;
+  font-size: 16px;
   font-weight: 800;
-  color: #79d2e5;
-  display:  block;
-  margin: auto;
-  overflow: hidden;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
   color: #212429;
+
+  height: 50px;
 }
 
-.createBtn:hover{
-  background:#212429;
+.createBtn:hover {
+  background: #212429;
   color: #79d2e5;
-  }
+}
 
 .createPoolDiv {
   width: 450px;
@@ -67,6 +63,15 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.createPoolForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+}
+
 .createPoolForm input::placeholder {
   color: rgba(121, 210, 229, 0.4);
 }
@@ -83,14 +88,9 @@
   border: 1px solid #79d2e5;
   display: inline-block;
   border-radius: 10px 0 0 10px;
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
   text-align: center;
   font-weight: 800;
-  color: #F6F740;
-  
-
+  color: #f6f740;
 }
 
 #dropdown-basic {
@@ -109,10 +109,7 @@
   box-sizing: border-box;
   border-radius: 0 10px 10px 0;
   text-align: center;
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  display: inline-block;
+
   -webkit-appearance: none;
   -moz-appearance: textfield;
 }
@@ -125,6 +122,6 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }

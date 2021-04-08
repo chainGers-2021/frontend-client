@@ -65,7 +65,7 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
               as="button"
               onClick={(e) => {
                 e.preventDefault();
-                setTokenName("LINK/USD");
+                setTokenName("LINK");
               }}
             >
               LINK/USD
@@ -74,7 +74,7 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
               as="button"
               onClick={(e) => {
                 e.preventDefault();
-                setTokenName("ETH/USD");
+                setTokenName("ETH");
               }}
             >
               ETH/USD
@@ -83,7 +83,7 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
               as="button"
               onClick={(e) => {
                 e.preventDefault();
-                setTokenName("WBTC/USD");
+                setTokenName("WBTC");
               }}
             >
               WBTC/USD
@@ -106,7 +106,7 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
 
         <br />
 
-        <div className=" priceShower">
+        <div className="priceShower">
           <input placeholder="USD" className="currency" readOnly />
 
           <input
@@ -121,15 +121,13 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
             type="number"
           />
         </div>
-
-        <br />
-
-        <button onClick={createPool} className="createBtn">
+        <button onClick={createPool} className="btn btn-sm createBtn">
           Create Pool
         </button>
-      <div class="alert alert-success" role="alert">This is a success alert—check it out!</div>
+        <div class="alert alert-success mt-3" role="alert">
+          This is a success alert—check it out!
+        </div>
       </form>
-
     </div>
   );
 };

@@ -49,6 +49,14 @@
 .poolContent input:focus {
   outline: none;
 }
+
+.privatePoolForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .privatePoolFields {
   height: 35px;
   background: #223a59;
@@ -56,10 +64,7 @@
   box-sizing: border-box;
   border-radius: 10px;
   text-align: center;
-  display: block;
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 8px 0;
 }
 .privatePoolForm input::placeholder {
   color: rgba(121, 210, 229, 0.4);
@@ -76,8 +81,6 @@
   border: 1px solid #79d2e5;
   display: inline-block;
   border-radius: 10px 0 0 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
   text-align: center;
   font-weight: 500;
 }
@@ -98,8 +101,7 @@
   box-sizing: border-box;
   border-radius: 10px;
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 8px 0;
   display: block;
 }
 .targetPriceDiv {

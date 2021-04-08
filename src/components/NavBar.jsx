@@ -79,17 +79,14 @@ const NavBar = ({ handleConnect, accounts }) => {
         NGOs
       </Link>
 
-      <div className="title display-4">
-        AACHAINVESTOR
-      </div>
+      {/* <div className="title display-4">AACHAINVESTOR</div> */}
 
-      {/* <div className="searchField">
+      <div className="searchField">
         <input
           placeholder="Enter Private Pool Name"
           value={privatePool ? privatePool : ""}
           onChange={(e) => setPrivatePool(e.target.value)}
         />
-
         <div class="searchButton">
           <button onClick={findPrivatePool}>
             <img
@@ -99,7 +96,7 @@ const NavBar = ({ handleConnect, accounts }) => {
             />
           </button>
         </div>
-      </div> */}
+      </div>
 
       <button onClick={() => handleConnect()} className="connectBtn">
         {accounts[0]}
