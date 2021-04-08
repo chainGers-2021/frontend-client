@@ -5,6 +5,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import "../styles/createPool.css";
 
 const CreatePool = ({ web3, address, privatePoolContract }) => {
+  const [message, setMessage] = useState(null);
   const [tokenName, setTokenName] = useState(null);
   const [poolName, setPoolName] = useState(null);
   const [targetPrice, setTargetPrice] = useState(null);
@@ -46,15 +47,28 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
               .then((tx) => console.log(tx))
               .catch((err) => console.log(err));
           } else {
-            console.log("Pool already exists");
+            setMessage("Pool already exists.");
+            setTimeout(() => {
+              setMessage(null);
+            }, 5000);
           }
         })
         .catch((error) => console.log("error", error));
+    } else if (!web3) {
+      setMessage("Connect Wallet.");
+      setTimeout(() => {
+        setMessage(null);
+      }, 5000);
+    } else {
+      setMessage("Please fill required fields.");
+      setTimeout(() => {
+        setMessage(null);
+      }, 5000);
     }
   };
 
   return (
-    <div className="createPoolDiv">
+    <div className="createPoolDiv position-relative">
       <form className="createPoolForm">
         <Dropdown>
           <Dropdown.Toggle className="selectTokens" id="dropdown-basic">
@@ -124,10 +138,15 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
         <button onClick={createPool} className="btn btn-sm createBtn">
           Create Pool
         </button>
-        <div class="alert alert-success mt-3" role="alert">
-          This is a success alert—check it out!
-        </div>
       </form>
+      {message && (
+        <div
+          class="alert alert-danger mt-3 position-absolute fixed-bottom w-50"
+          role="alert"
+        >
+          {message}
+        </div>
+      )}
     </div>
   );
 };

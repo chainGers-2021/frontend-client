@@ -51,8 +51,8 @@ const Home = ({ address, comptrollerContract, ERC20 }) => {
     publicPools && (
       <div className="homeBody">
         <Carousel className="d-flex justify-content-center align-items-center w-100 h-100">
-          {publicPools.map((elt) => (
-            <Carousel.Item>
+          {publicPools.map((elt, i) => (
+            <Carousel.Item key={i}>
               <div className="d-flex w-100 h-100">
                 <Graph
                   className="graph"
