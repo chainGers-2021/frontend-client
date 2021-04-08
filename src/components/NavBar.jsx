@@ -69,31 +69,38 @@ const NavBar = ({ handleConnect, accounts }) => {
   return (
     <div className="navBar">
       <img src={logo} alt="logo" className="logo navBarElement" />
-      <div style={{ margin: 20 }}>
-        <Link to="/">HOME</Link>
+      <Link className="options" to="/">
+        HOME
+      </Link>
+      <Link className="options" to="/create">
+        CREATE
+      </Link>
+      <Link className="options" to="/marketplace">
+        NGOs
+      </Link>
+
+      <div className="title display-4">
+        AACHAINVESTOR
       </div>
-      <div style={{ margin: 20 }}>
-        <Link to="/create">CREATE</Link>
-      </div>
-      <div style={{ margin: 20 }}>
-        <Link to="/marketplace">NGOs</Link>
-      </div>
-      <div className="searchField">
+
+      {/* <div className="searchField">
         <input
           placeholder="Enter Private Pool Name"
           value={privatePool ? privatePool : ""}
           onChange={(e) => setPrivatePool(e.target.value)}
         />
-      </div>
-      <div class="searchButton">
-        <button onClick={findPrivatePool}>
-          <img
-            src={searchIcon}
-            style={{ width: 20, height: 20 }}
-            alt="search icon"
-          />
-        </button>
-      </div>
+
+        <div class="searchButton">
+          <button onClick={findPrivatePool}>
+            <img
+              src={searchIcon}
+              style={{ width: 20, height: 20 }}
+              alt="search icon"
+            />
+          </button>
+        </div>
+      </div> */}
+
       <button onClick={() => handleConnect()} className="connectBtn">
         {accounts[0]}
       </button>

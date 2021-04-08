@@ -123,12 +123,13 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
         </div>
 
         <br />
-        
+
         <button onClick={createPool} className="createBtn">
           Create Pool
         </button>
-      
+      <div class="alert alert-success" role="alert">This is a success alert—check it out!</div>
       </form>
+
     </div>
   );
 };
