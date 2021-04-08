@@ -52,6 +52,8 @@
   border-bottom: 1px solid gray;
   display: flex;
   align-items: center;
+
+  z-index: 5;
 }
 
 .navBar a {

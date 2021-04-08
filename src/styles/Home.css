@@ -23,16 +23,13 @@
 .graph {
   height: 400px;
   width: 600px;
-  margin: auto;
-  margin-right: 5px;
-  margin-top: 50px;
 }
 
 .homeBody {
   display: flex;
   /* border: 2px solid black; */
   width: 100%;
+  height: 100vh;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
 }

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 import "../styles/Home.css";
 import Graph from "../components/Graph";
 import PoolContent from "../components/PoolContent";
+import Carousel from "react-bootstrap/Carousel";
 
 const formatData = (data) => {
   return data.map((elt) => {
@@ -50,23 +50,25 @@ const Home = ({ address, comptrollerContract, ERC20 }) => {
   return (
     publicPools && (
       <div className="homeBody">
-        <button className="arrowLeftBtn">
-          <FaAngleLeft style={{ color: "#79D2E5", fontSize: 20 }} />
-        </button>
-        <Graph
-          className="graph"
-          xAxis={publicPools[0].timestamps}
-          yAxis={publicPools[0].history}
-        />
-        <PoolContent
-          data={publicPools[0]}
-          comptrollerContract={comptrollerContract}
-          address={address}
-          ERC20={ERC20}
-        />
-        <button className="arrowRightBtn">
-          <FaAngleRight style={{ color: "#79D2E5", fontSize: 20 }} />
-        </button>
+        <Carousel className="d-flex justify-content-center align-items-center w-100 h-100">
+          {publicPools.map((elt) => (
+            <Carousel.Item>
+              <div className="d-flex w-100 h-100">
+                <Graph
+                  className="graph"
+                  xAxis={elt.timestamps}
+                  yAxis={elt.history}
+                />
+                <PoolContent
+                  data={elt}
+                  comptrollerContract={comptrollerContract}
+                  address={address}
+                  ERC20={ERC20}
+                />
+              </div>
+            </Carousel.Item>
+          ))}
+        </Carousel>
       </div>
     )
   );
