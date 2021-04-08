@@ -12,6 +12,7 @@ import PrivatePool from "./screens/PrivatePool";
 import MarketPlace from "./screens/MarketPlace";
 import CreatePool from "./components/CreatePool";
 import PrivatePools from "./assets/PrivatePool.json";
+import TransactionComplete from "./components/TransactionComplete";
 
 const GetComptrollerContract = async (
   web3,
@@ -104,6 +105,9 @@ const App = () => {
             privatePoolContract={privatePoolContract}
             web3={web3}
           />
+        </Route>
+        <Route exact path="/complete">
+          <TransactionComplete />
         </Route>
       </Switch>
     </div>

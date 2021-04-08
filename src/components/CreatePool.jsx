@@ -1,14 +1,18 @@
 import Web3 from "web3";
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import "../styles/createPool.css";
+import LoadingAnimation from "./LoadingAnimation";
 
 const CreatePool = ({ web3, address, privatePoolContract }) => {
   const [message, setMessage] = useState(null);
   const [tokenName, setTokenName] = useState(null);
   const [poolName, setPoolName] = useState(null);
   const [targetPrice, setTargetPrice] = useState(null);
+  const history = useHistory();
+  const [loading, setLoading] = useState(false);
 
   const createPool = (e) => {
     e.preventDefault();
@@ -39,13 +43,38 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
         .then(async (result) => {
           if (!result.data.pool) {
             const account = await web3.eth.accounts.create();
-            console.log(account.address, account.privateKey);
+            const details = [
+              {
+                key: "Private Key",
+                value: account.privateKey,
+              },
+            ];
 
             privatePoolContract.methods
               .createPool(tokenName, poolName, targetPrice, account.address)
               .send({ from: address })
-              .then((tx) => console.log(tx))
-              .catch((err) => console.log(err));
+              .then((tx) => {
+                setLoading(false);
+                history.push({
+                  pathname: "/complete",
+                  state: {
+                    response: tx,
+                    details,
+                    newPool: true,
+                  },
+                });
+              })
+              .catch((err) => {
+                setLoading(false);
+                history.push({
+                  pathname: "/complete",
+                  state: {
+                    response: { ...err, status: true, from: address },
+                    details,
+                  },
+                });
+              });
+            setLoading(true);
           } else {
             setMessage("Pool already exists.");
             setTimeout(() => {
@@ -67,7 +96,7 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
     }
   };
 
-  return (
+  return !loading ? (
     <div className="createPoolDiv position-relative">
       <form className="createPoolForm">
         <Dropdown>
@@ -148,6 +177,8 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
         </div>
       )}
     </div>
+  ) : (
+    <LoadingAnimation height="40px" color="white" />
   );
 };
 

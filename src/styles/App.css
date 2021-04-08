@@ -1,5 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
 
+#root {
+  background: radial-gradient(
+    76.01% 71.78% at 50% 31.79%,
+    #324159 0%,
+    #303c4f 31.2%,
+    #2e3542 53.67%,
+    #272b33 89.04%,
+    #23252b 100%
+  );
+}
+
 .card-author {
   font-style: normal;
   font-weight: normal;
