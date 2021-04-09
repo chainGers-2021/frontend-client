@@ -13,7 +13,6 @@ const formatData = (data) => {
 const PrivatePool = ({
   address,
   comptrollerContract,
-  ERC20,
   privatePoolContract,
   web3,
 }) => {
@@ -105,7 +104,7 @@ const PrivatePool = ({
               <PoolContent
                 data={data}
                 address={address}
-                ERC20={ERC20}
+                web3={web3}
                 comptrollerContract={comptrollerContract}
               />
             </div>

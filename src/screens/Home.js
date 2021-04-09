@@ -13,7 +13,7 @@ const formatData = (data) => {
   });
 };
 
-const Home = ({ address, comptrollerContract, ERC20 }) => {
+const Home = ({ address, comptrollerContract, web3 }) => {
   const [publicPools, setPublicPools] = useState(null);
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const Home = ({ address, comptrollerContract, ERC20 }) => {
                   data={elt}
                   comptrollerContract={comptrollerContract}
                   address={address}
-                  ERC20={ERC20}
+                  web3={web3}
                 />
               </div>
             </Carousel.Item>
