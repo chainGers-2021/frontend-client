@@ -5,6 +5,8 @@ import Graph from "../components/Graph";
 import PoolContent from "../components/PoolContent";
 import Carousel from "react-bootstrap/Carousel";
 
+import LoadingAnimation from "../components/LoadingAnimation";
+
 const formatData = (data) => {
   return data.map((elt) => {
     elt.history = elt.history.map((e) => parseInt(e));
@@ -15,6 +17,7 @@ const formatData = (data) => {
 
 const Home = ({ address, comptrollerContract, web3 }) => {
   const [publicPools, setPublicPools] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const query = {
@@ -47,7 +50,7 @@ const Home = ({ address, comptrollerContract, web3 }) => {
       .catch((error) => console.log("error", error));
   }, []);
 
-  return (
+  return !loading ? (
     publicPools && (
       <div className="homeBody">
         <Carousel className="d-flex justify-content-center align-items-center w-100 h-100">
@@ -64,6 +67,7 @@ const Home = ({ address, comptrollerContract, web3 }) => {
                   comptrollerContract={comptrollerContract}
                   address={address}
                   web3={web3}
+                  setLoading={setLoading}
                 />
               </div>
             </Carousel.Item>
@@ -71,6 +75,8 @@ const Home = ({ address, comptrollerContract, web3 }) => {
         </Carousel>
       </div>
     )
+  ) : (
+    <LoadingAnimation color="white" height="40px" />
   );
 };
 

@@ -95,7 +95,7 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
                 history.push({
                   pathname: "/complete",
                   state: {
-                    response: { ...err, status: true, from: address },
+                    response: { ...err, status: false, from: address },
                     details,
                   },
                 });

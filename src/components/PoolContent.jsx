@@ -2,6 +2,7 @@ import { useState } from "react";
 import OZ from "@openzeppelin/contracts/build/contracts/ERC20.json";
 
 import "../styles/poolContent.css";
+import { useHistory } from "react-router";
 
 const toWei = (x) => {
   return (x * 10 ** 18).toString();
@@ -32,18 +33,26 @@ const initializeERC20 = async (web3, symbol) => {
   return ERC20;
 };
 
-const PoolContent = ({ address, comptrollerContract, data, web3 }) => {
+const PoolContent = ({
+  address,
+  comptrollerContract,
+  data,
+  web3,
+  setLoading,
+}) => {
   const [amount, setAmount] = useState(null);
+  const history = useHistory();
 
   const deposit = async (e) => {
     e.preventDefault();
     if (comptrollerContract) {
+      setLoading(true);
       const ERC20 = await initializeERC20(web3, data.symbol);
-      await ERC20.methods
+      ERC20.methods
         .approve(comptrollerContract._address, toWei(0.5))
         .send({ from: address })
-        .then(async (tx) => {
-          await comptrollerContract.methods
+        .then((tx) => {
+          comptrollerContract.methods
             .depositERC20(
               data.name,
               toWei(amount),
@@ -51,22 +60,99 @@ const PoolContent = ({ address, comptrollerContract, data, web3 }) => {
               data.privatePool
             )
             .send({ from: address })
-            .then((tx) => console.log(tx))
-            .catch((err) => console.log(err));
+            .then((tx) => {
+              setLoading(false);
+              const details = [
+                {
+                  key: "Deposit",
+                  value: `${amount} ${data.symbol}`,
+                },
+              ];
+              history.push({
+                pathname: "/complete",
+                state: {
+                  response: tx,
+                  newPool: true,
+                  details,
+                },
+              });
+            })
+            .catch((err) => {
+              setLoading(false);
+              const details = [
+                {
+                  key: "Deposit",
+                  value: `${amount} ${data.symbol}`,
+                },
+              ];
+              history.push({
+                pathname: "/complete",
+                state: {
+                  response: { ...err, status: false, from: address },
+                  details,
+                },
+              });
+            });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setLoading(false);
+          const details = [
+            {
+              key: "Deposit",
+              value: `${amount} ${data.symbol}`,
+            },
+          ];
+          history.push({
+            pathname: "/complete",
+            state: {
+              response: { ...err, status: false, from: address },
+              details,
+            },
+          });
+        });
     }
   };
 
-  const withdrawal = async (e) => {
+  const withdrawal = (e) => {
     e.preventDefault();
-
     if (comptrollerContract) {
-      await comptrollerContract.methods
+      setLoading(true);
+      comptrollerContract.methods
         .withdrawERC20(data.name, toWei(amount), data.privatePool)
         .send({ from: address })
-        .then((tx) => console.log(tx))
-        .catch((err) => console.log(err));
+        .then((tx) => {
+          setLoading(false);
+          const details = [
+            {
+              key: "Withdrawal",
+              value: `${amount} ${data.symbol}`,
+            },
+          ];
+          history.push({
+            pathname: "/complete",
+            state: {
+              response: tx,
+              newPool: true,
+              details,
+            },
+          });
+        })
+        .catch((err) => {
+          setLoading(false);
+          const details = [
+            {
+              key: "Deposit",
+              value: `${amount} ${data.symbol}`,
+            },
+          ];
+          history.push({
+            pathname: "/complete",
+            state: {
+              response: { ...err, status: false, from: address },
+              details,
+            },
+          });
+        });
     }
   };
 
