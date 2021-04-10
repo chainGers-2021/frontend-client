@@ -4,6 +4,8 @@ import Graph from "../components/Graph";
 import PoolContent from "../components/PoolContent";
 import { useHistory } from "react-router";
 
+import LoadingAnimation from "../components/LoadingAnimation";
+
 const formatData = (data) => {
   data.history = data.history.map((e) => parseInt(e));
   data.timestamps = data.timestamps.map((e) => parseInt(e));
@@ -17,6 +19,8 @@ const PrivatePool = ({
   web3,
 }) => {
   const [privateKey, setPrivateKey] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const history = useHistory();
   const state = history.location.state;
   let DOM = <></>;
@@ -106,6 +110,7 @@ const PrivatePool = ({
                 address={address}
                 web3={web3}
                 comptrollerContract={comptrollerContract}
+                setLoading={setLoading}
               />
             </div>
           );
@@ -142,6 +147,6 @@ const PrivatePool = ({
     }
   }
 
-  return DOM;
+  return !loading ? DOM : <LoadingAnimation color="white" height="40px" />;
 };
 export default PrivatePool;
