@@ -7,10 +7,24 @@ import Carousel from "react-bootstrap/Carousel";
 
 import LoadingAnimation from "../components/LoadingAnimation";
 
+const parseDates = (unixTimeStamp) => {
+  const date = new Date(unixTimeStamp * 1000);
+
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  const minutes = "0" + date.getMinutes();
+
+  const string = `${day} / ${month} / ${year} - ${hours}:${minutes.substr(-2)}`;
+
+  return string;
+};
+
 const formatData = (data) => {
   return data.map((elt) => {
-    elt.history = elt.history.map((e) => parseInt(e));
-    elt.timestamps = elt.timestamps.map((e) => parseInt(e));
+    elt.history = elt.history.map((e) => parseFloat(e) / 10 ** 18);
+    elt.timestamps = elt.timestamps.map((e) => parseDates(parseInt(e)));
     return elt;
   });
 };
