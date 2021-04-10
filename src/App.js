@@ -5,6 +5,7 @@ import { Switch, Route, useLocation } from "react-router-dom";
 
 import "./styles/App.css";
 import Home from "./screens/Home";
+import NFT from "./components/Nft";
 import NavBar from "./components/NavBar";
 import Comptroller from "./assets/info.json";
 import PrivatePool from "./screens/PrivatePool";
@@ -85,6 +86,9 @@ const App = () => {
             address={accounts[0]}
             web3={web3}
           />
+        </Route>
+        <Route exact path="/nft">
+          <NFT />
         </Route>
         <Route exact path="/marketplace">
           <MarketPlace />
