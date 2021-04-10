@@ -54,10 +54,11 @@ const App = () => {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
       accounts = await window.ethereum.enable();
+      setAccounts(accounts);
+      setWeb3(window.web3);
+    } else {
+      alert("Install Metamask Extension First");
     }
-
-    setAccounts(accounts);
-    setWeb3(window.web3);
   };
 
   useEffect(() => {
