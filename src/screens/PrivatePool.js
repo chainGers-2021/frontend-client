@@ -99,19 +99,39 @@ const PrivatePool = ({
         users = users.map((elt) => elt.id);
         if (!data.privatePool || users.indexOf(address) !== -1) {
           DOM = (
-            <div className="privateBody">
-              <Graph
-                className="graph"
-                xAxis={data.timestamps}
-                yAxis={data.history}
-              />
-              <PoolContent
-                data={data}
-                address={address}
-                web3={web3}
-                comptrollerContract={comptrollerContract}
-                setLoading={setLoading}
-              />
+            <div className="d-flex flex-column w-100">
+              <div className="privateBody">
+                <Graph
+                  className="graph"
+                  xAxis={data.timestamps}
+                  yAxis={data.history}
+                />
+                <PoolContent
+                  data={data}
+                  address={address}
+                  web3={web3}
+                  comptrollerContract={comptrollerContract}
+                  setLoading={setLoading}
+                />
+              </div>
+              <div className="w-50 mx-auto mt-5 text-light">
+                <table className="table text-light">
+                  <thead>
+                    <tr>
+                      <th scope="col">Address</th>
+                      <th scope="col">Total Deposit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.top5.map((elt, key) => (
+                      <tr key={key}>
+                        <th scope="row">{elt.user.id}</th>
+                        <td>{elt.totalDeposit}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           );
         } else {

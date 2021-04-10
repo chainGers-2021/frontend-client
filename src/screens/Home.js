@@ -46,7 +46,37 @@ const Home = ({ address, comptrollerContract, web3 }) => {
 
     fetch(url, options)
       .then((data) => data.json())
-      .then((result) => setPublicPools(formatData(result.data.pools)))
+      .then(async (result) => {
+        const results = await Promise.all(
+          result.data.pools.map(async (elt) => {
+            const query = {
+              query: `
+              {
+                userPools(where: {pool: "${elt.id}"}, orderBy: "totalDeposit", orderDirection: desc){
+                  user{
+                    id
+                  }
+                  totalDeposit
+                }
+              }`,
+            };
+            const url =
+              "https://api.thegraph.com/subgraphs/name/sksuryan/baby-shark";
+            const headers = new Headers();
+            headers.append("Content-Type", "application/json");
+            const options = {
+              method: "POST",
+              headers,
+              body: JSON.stringify(query),
+            };
+            const res = await fetch(url, options);
+            const data = await res.json();
+            elt.top5 = data.data.userPools;
+            return elt;
+          })
+        );
+        setPublicPools(formatData(results));
+      })
       .catch((error) => console.log("error", error));
   }, []);
 
@@ -69,6 +99,24 @@ const Home = ({ address, comptrollerContract, web3 }) => {
                   web3={web3}
                   setLoading={setLoading}
                 />
+              </div>
+              <div className="w-50 mx-auto mt-5 text-light">
+                <table className="table text-light">
+                  <thead>
+                    <tr>
+                      <th scope="col">Address</th>
+                      <th scope="col">Total Deposit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {elt.top5.map((elt, key) => (
+                      <tr key={key}>
+                        <th scope="row">{elt.user.id}</th>
+                        <td>{elt.totalDeposit}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </Carousel.Item>
           ))}

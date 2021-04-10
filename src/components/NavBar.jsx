@@ -33,6 +33,12 @@ const NavBar = ({ handleConnect, accounts }) => {
               timestamps
               privatePool
             }
+            userPools(where: {pool: "${hashed}"}, orderBy: "totalDeposit", orderDirection: desc){
+              user{
+                id
+              }
+              totalDeposit
+            }
           }`,
       };
 
@@ -48,7 +54,9 @@ const NavBar = ({ handleConnect, accounts }) => {
       fetch(url, options)
         .then((data) => data.json())
         .then(async (result) => {
-          let { pool } = result.data;
+          let { pool, userPools } = result.data;
+          pool.top5 = userPools;
+          console.log(pool);
           if (pool) {
             pool = formatData(pool);
             pool.name = privatePool;
