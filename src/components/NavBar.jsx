@@ -1,4 +1,3 @@
-import Web3 from "web3";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
@@ -32,11 +31,10 @@ const NavBar = ({ handleConnect, accounts }) => {
 
   const findPrivatePool = () => {
     if (privatePool) {
-      const hashed = Web3.utils.keccak256(privatePool);
       const query = {
         query: `
           {
-            pool(id: "${hashed}") {
+            pool(id: "${privatePool}") {
               id
               symbol
               totalDeposit
@@ -47,7 +45,7 @@ const NavBar = ({ handleConnect, accounts }) => {
               timestamps
               privatePool
             }
-            userPools(where: {pool: "${hashed}"}, orderBy: "totalDeposit", orderDirection: desc){
+            userPools(where: {pool: "${privatePool}"}, orderBy: "totalDeposit", orderDirection: desc){
               user{
                 id
               }
@@ -69,9 +67,8 @@ const NavBar = ({ handleConnect, accounts }) => {
         .then((data) => data.json())
         .then(async (result) => {
           let { pool, userPools } = result.data;
-          pool.top5 = userPools;
-          console.log(pool);
           if (pool) {
+            pool.top5 = userPools;
             pool = formatData(pool);
             pool.name = privatePool;
             history.push({
@@ -81,7 +78,7 @@ const NavBar = ({ handleConnect, accounts }) => {
               },
             });
           } else {
-            console.log("Pool doesn't exists");
+            alert("Pool doesn't exist");
           }
         })
         .catch((error) => console.log("error", error));

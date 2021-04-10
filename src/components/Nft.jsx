@@ -52,7 +52,6 @@ const NFT = () => {
       fetch(url, options)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setTop5(data.data.symbols);
         })
         .catch((err) => console.log(err));

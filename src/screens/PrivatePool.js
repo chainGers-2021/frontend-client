@@ -50,12 +50,10 @@ const PrivatePool = ({
       .verifyPoolAccess(data.name, messageHash, signature)
       .send({ from: address })
       .then((tx) => {
-        console.log(tx);
-        const hashed = web3.utils.keccak256(data.name);
         const query = {
           query: `
           {
-            pool(id: "${hashed}") {
+            pool(id: "${data.id}") {
               id
               symbol
               totalDeposit
@@ -65,6 +63,12 @@ const PrivatePool = ({
               history
               timestamps
               privatePool
+            }
+            userPools(where: {pool: "${data.id}"}, orderBy: "totalDeposit", orderDirection: desc){
+              user{
+                id
+              }
+              totalDeposit
             }
           }`,
         };
@@ -82,8 +86,9 @@ const PrivatePool = ({
         fetch(url, options)
           .then((data) => data.json())
           .then(async (result) => {
-            let { pool } = result.data;
+            let { pool, userPools } = result.data;
             if (pool) {
+              pool.top5 = userPools;
               pool = formatData(pool);
               pool.name = data.name;
               history.push({
@@ -110,7 +115,6 @@ const PrivatePool = ({
         history.push("/");
       } else {
         let users = data.users;
-        users = users.map((elt) => elt.id);
         if (!data.privatePool || users.indexOf(address) !== -1) {
           DOM = (
             <div className="d-flex flex-column w-100">

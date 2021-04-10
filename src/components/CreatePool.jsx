@@ -1,4 +1,3 @@
-import Web3 from "web3";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -44,12 +43,10 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
     e.preventDefault();
 
     if (web3 && tokenName && poolName && targetPrice) {
-      const hashed = Web3.utils.keccak256(poolName).toString();
-
       const query = {
         query: `
           {
-            pool(id: "${hashed}") {
+            pool(id: "${poolName}") {
               id
             }
           }`,
@@ -70,6 +67,10 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
           if (!result.data.pool) {
             const account = await web3.eth.accounts.create();
             const details = [
+              {
+                key: "Name",
+                value: poolName,
+              },
               {
                 key: "Private Key",
                 value: account.privateKey,

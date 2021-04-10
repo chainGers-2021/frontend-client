@@ -49,16 +49,11 @@ const PoolContent = ({
       setLoading(true);
       const ERC20 = await initializeERC20(web3, data.symbol);
       ERC20.methods
-        .approve(comptrollerContract._address, toWei(0.5))
+        .approve(comptrollerContract._address, toWei(amount))
         .send({ from: address })
         .then((tx) => {
           comptrollerContract.methods
-            .depositERC20(
-              data.name,
-              toWei(amount),
-              data.symbol,
-              data.privatePool
-            )
+            .depositERC20(data.id, toWei(amount), data.privatePool)
             .send({ from: address })
             .then((tx) => {
               setLoading(false);
@@ -72,7 +67,6 @@ const PoolContent = ({
                 pathname: "/complete",
                 state: {
                   response: tx,
-                  newPool: true,
                   details,
                 },
               });
@@ -90,6 +84,7 @@ const PoolContent = ({
                 state: {
                   response: { ...err, status: false, from: address },
                   details,
+                  newPool: false,
                 },
               });
             });
@@ -118,7 +113,7 @@ const PoolContent = ({
     if (comptrollerContract) {
       setLoading(true);
       comptrollerContract.methods
-        .withdrawERC20(data.name, toWei(amount), data.privatePool)
+        .withdrawERC20(data.id, toWei(amount), data.privatePool)
         .send({ from: address })
         .then((tx) => {
           setLoading(false);
@@ -132,7 +127,7 @@ const PoolContent = ({
             pathname: "/complete",
             state: {
               response: tx,
-              newPool: true,
+              newPool: false,
               details,
             },
           });
@@ -167,7 +162,7 @@ const PoolContent = ({
           readOnly
         />
         <input
-          value={data.name}
+          value={data.id}
           placeholder="Pool Name"
           className="privatePoolFields"
           readOnly
