@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 
-const NFT = () => {
+const NFT = ({ address }) => {
   const [tokens, setTokens] = useState([]);
   const [tokenName, setTokenName] = useState(null);
   const [top5, setTop5] = useState([]);
+  const [claimNFT, setClaimNFT] = useState(false);
+
   useEffect(() => {
     const query = {
       query: `
@@ -58,27 +60,40 @@ const NFT = () => {
     }
   }, [tokenName]);
 
+  useEffect(() => {
+    if (top5.length && address) {
+      const users = top5.map((elt) => elt.user);
+      if (users.indexOf(address) !== -1) setClaimNFT(true);
+      else setClaimNFT(false);
+    }
+  }, [top5, address]);
+
   return (
     <>
-      <Dropdown>
-        <Dropdown.Toggle className="selectTokens" id="dropdown-basic">
-          {tokenName ? tokenName : "Select"}
-        </Dropdown.Toggle>
-        <Dropdown.Menu className="super-colors">
-          {tokens.map((elt, key) => (
-            <Dropdown.Item
-              as="button"
-              onClick={(e) => {
-                e.preventDefault();
-                setTokenName(elt.id);
-              }}
-              key={key}
-            >
-              {elt.id}
-            </Dropdown.Item>
-          ))}
-        </Dropdown.Menu>
-      </Dropdown>
+      <div className="d-flex flex-column justify-content-center align-items-center">
+        <Dropdown>
+          <Dropdown.Toggle className="selectTokens" id="dropdown-basic">
+            {tokenName ? tokenName : "Select"}
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="super-colors">
+            {tokens.map((elt, key) => (
+              <Dropdown.Item
+                as="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setTokenName(elt.id);
+                }}
+                key={key}
+              >
+                {elt.id}
+              </Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+        {claimNFT && (
+          <button className="btn btn-success mt-3">Claim NFT!</button>
+        )}
+      </div>
       <div className="w-50 mx-auto mt-5 text-light">
         <table className="table text-light">
           <thead>

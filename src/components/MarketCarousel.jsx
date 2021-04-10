@@ -10,22 +10,27 @@ const MarketCarousel = () => {
   return (
     <Carousel>
       <Carousel.Item>
-        <img
-          className="carousel-slide"
-          src={sampleCarousel1}
-          alt="First slide"
-        />
+        <div className="carContain">
+          <img
+            className="carousel-slide"
+            src={sampleCarousel1}
+            alt="First slide"
+          />
+        </div>
         <Carousel.Caption>
           <h3>First slide label</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img
-          className="carousel-slide"
-          src={sampleCarousel2}
-          alt="Second slide"
-        />
+        <div className="carContain">
+          <img
+            className="carousel-slide"
+            src={sampleCarousel2}
+            alt="Second slide"
+            width="100%"
+          />
+        </div>
 
         <Carousel.Caption>
           <h3>Second slide label</h3>
@@ -33,11 +38,14 @@ const MarketCarousel = () => {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img
-          className="carousel-slide"
-          src={sampleCarousel3}
-          alt="Third slide"
-        />
+        <div className="carContain">
+          <img
+            className="carousel-slide"
+            src={sampleCarousel3}
+            alt="Third slide"
+            width="100%"
+          />
+        </div>
 
         <Carousel.Caption>
           <h3>Third slide label</h3>

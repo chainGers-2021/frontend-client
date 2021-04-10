@@ -88,7 +88,7 @@ const App = () => {
           />
         </Route>
         <Route exact path="/nft">
-          <NFT />
+          <NFT address={accounts[0]} />
         </Route>
         <Route exact path="/marketplace">
           <MarketPlace />

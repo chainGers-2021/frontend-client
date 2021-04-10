@@ -95,10 +95,10 @@ const NavBar = ({ handleConnect, accounts }) => {
         CREATE
       </Link>
       <Link className="options" to="/marketplace">
-        NGOs
+        NFTs
       </Link>
       <Link className="options" to="/nft">
-        Token Top5
+        Leaderboard
       </Link>
 
       {/* <div className="title display-4">AACHAINVESTOR</div> */}
