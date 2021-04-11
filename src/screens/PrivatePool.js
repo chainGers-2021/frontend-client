@@ -4,20 +4,37 @@ import Graph from "../components/Graph";
 import PoolContent from "../components/PoolContent";
 import { useHistory } from "react-router";
 
-const formatData = (data) => {
-  data.history = data.history.map((e) => parseInt(e));
-  data.timestamps = data.timestamps.map((e) => parseInt(e));
-  return data;
+import LoadingAnimation from "../components/LoadingAnimation";
+
+const parseDates = (unixTimeStamp) => {
+  const date = new Date(unixTimeStamp * 1000);
+
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  const minutes = "0" + date.getMinutes();
+
+  const string = `${day} / ${month} / ${year} - ${hours}:${minutes.substr(-2)}`;
+
+  return string;
+};
+
+const formatData = (elt) => {
+  elt.history = elt.history.map((e) => parseFloat(e) / 10 ** 18);
+  elt.timestamps = elt.timestamps.map((e) => parseDates(parseInt(e)));
+  return elt;
 };
 
 const PrivatePool = ({
   address,
   comptrollerContract,
-  ERC20,
   privatePoolContract,
   web3,
 }) => {
   const [privateKey, setPrivateKey] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const history = useHistory();
   const state = history.location.state;
   let DOM = <></>;
@@ -33,12 +50,10 @@ const PrivatePool = ({
       .verifyPoolAccess(data.name, messageHash, signature)
       .send({ from: address })
       .then((tx) => {
-        console.log(tx);
-        const hashed = web3.utils.keccak256(data.name);
         const query = {
           query: `
           {
-            pool(id: "${hashed}") {
+            pool(id: "${data.id}") {
               id
               symbol
               totalDeposit
@@ -48,6 +63,12 @@ const PrivatePool = ({
               history
               timestamps
               privatePool
+            }
+            userPools(where: {pool: "${data.id}"}, orderBy: "totalDeposit", orderDirection: desc){
+              user{
+                id
+              }
+              totalDeposit
             }
           }`,
         };
@@ -65,8 +86,9 @@ const PrivatePool = ({
         fetch(url, options)
           .then((data) => data.json())
           .then(async (result) => {
-            let { pool } = result.data;
+            let { pool, userPools } = result.data;
             if (pool) {
+              pool.top5 = userPools;
               pool = formatData(pool);
               pool.name = data.name;
               history.push({
@@ -93,21 +115,41 @@ const PrivatePool = ({
         history.push("/");
       } else {
         let users = data.users;
-        users = users.map((elt) => elt.id);
         if (!data.privatePool || users.indexOf(address) !== -1) {
           DOM = (
-            <div className="privateBody">
-              <Graph
-                className="graph"
-                xAxis={data.timestamps}
-                yAxis={data.history}
-              />
-              <PoolContent
-                data={data}
-                address={address}
-                ERC20={ERC20}
-                comptrollerContract={comptrollerContract}
-              />
+            <div className="d-flex flex-column w-100">
+              <div className="privateBody">
+                <Graph
+                  className="graph"
+                  xAxis={data.timestamps}
+                  yAxis={data.history}
+                />
+                <PoolContent
+                  data={data}
+                  address={address}
+                  web3={web3}
+                  comptrollerContract={comptrollerContract}
+                  setLoading={setLoading}
+                />
+              </div>
+              <div className="w-50 mx-auto mt-5 text-light">
+                <table className="table text-light">
+                  <thead>
+                    <tr>
+                      <th scope="col">Address</th>
+                      <th scope="col">Total Deposit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.top5.map((elt, key) => (
+                      <tr key={key}>
+                        <th scope="row">{elt.user.id}</th>
+                        <td>{elt.totalDeposit}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           );
         } else {
@@ -143,6 +185,6 @@ const PrivatePool = ({
     }
   }
 
-  return DOM;
+  return !loading ? DOM : <LoadingAnimation color="white" height="40px" />;
 };
 export default PrivatePool;

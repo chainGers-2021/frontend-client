@@ -2,10 +2,10 @@ import Web3 from "web3";
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Switch, Route, useLocation } from "react-router-dom";
-import OZ from "@openzeppelin/contracts/build/contracts/ERC20.json";
 
 import "./styles/App.css";
 import Home from "./screens/Home";
+import NFT from "./components/Nft";
 import NavBar from "./components/NavBar";
 import Comptroller from "./assets/info.json";
 import PrivatePool from "./screens/PrivatePool";
@@ -17,7 +17,6 @@ import TransactionComplete from "./components/TransactionComplete";
 const GetComptrollerContract = async (
   web3,
   setComptrollerContract,
-  setERC20,
   setPrivatePoolContract
 ) => {
   const ComptrollerContract = await new web3.eth.Contract(
@@ -25,16 +24,11 @@ const GetComptrollerContract = async (
     Comptroller.address
   );
 
-  const linkAddress = "0xad5ce863ae3e4e9394ab43d4ba0d80f419f61789";
-
-  const ERC20 = await new web3.eth.Contract(OZ.abi, linkAddress);
-
   const PrivatePoolContract = await new web3.eth.Contract(
     PrivatePools.abi,
     PrivatePools.address
   );
 
-  setERC20(ERC20);
   setComptrollerContract(ComptrollerContract);
   setPrivatePoolContract(PrivatePoolContract);
 };
@@ -43,7 +37,6 @@ const App = () => {
   const [screen, setScreen] = useState("home");
   const [web3, setWeb3] = useState(null);
   const [accounts, setAccounts] = useState(["Connect Wallet"]);
-  const [ERC20, setERC20] = useState(null);
   const [comptrollerContract, setComptrollerContract] = useState(null);
   const [privatePoolContract, setPrivatePoolContract] = useState(null);
 
@@ -66,7 +59,6 @@ const App = () => {
       GetComptrollerContract(
         web3,
         setComptrollerContract,
-        setERC20,
         setPrivatePoolContract
       );
     }
@@ -84,7 +76,7 @@ const App = () => {
         <Route exact path="/">
           <Home
             address={accounts[0]}
-            ERC20={ERC20}
+            web3={web3}
             comptrollerContract={comptrollerContract}
           />
         </Route>
@@ -95,13 +87,15 @@ const App = () => {
             web3={web3}
           />
         </Route>
+        <Route exact path="/nft">
+          <NFT address={accounts[0]} />
+        </Route>
         <Route exact path="/marketplace">
           <MarketPlace />
         </Route>
         <Route exact path="/privatepool">
           <PrivatePool
             address={accounts[0]}
-            ERC20={ERC20}
             comptrollerContract={comptrollerContract}
             privatePoolContract={privatePoolContract}
             web3={web3}

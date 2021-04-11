@@ -16,19 +16,9 @@ const MarketPlace = () => {
         overflow: "scroll",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div className="carouselContainer">
-          <MarketCarousel />
-        </div>
+      <div className="w-100 mb-5">
+        <MarketCarousel />
       </div>
-
       <div className="card-grid">
         <ProductCard
           address="myaddress"

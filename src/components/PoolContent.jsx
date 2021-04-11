@@ -1,42 +1,153 @@
 import { useState } from "react";
+import OZ from "@openzeppelin/contracts/build/contracts/ERC20.json";
+
 import "../styles/poolContent.css";
+import { useHistory } from "react-router";
 
 const toWei = (x) => {
   return (x * 10 ** 18).toString();
 };
 
-const PoolContent = ({ address, comptrollerContract, data, ERC20 }) => {
+const initializeERC20 = async (web3, symbol) => {
+  const query = {
+    query: `
+      {
+        token(id: "${symbol}") {
+          address
+        }
+      }`,
+  };
+
+  const url = "https://api.thegraph.com/subgraphs/name/sksuryan/baby-shark";
+  const headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  const options = {
+    method: "POST",
+    headers,
+    body: JSON.stringify(query),
+  };
+
+  const res = await fetch(url, options);
+  const data = await res.json();
+  const ERC20 = await new web3.eth.Contract(OZ.abi, data.data.token.address);
+  return ERC20;
+};
+
+const PoolContent = ({
+  address,
+  comptrollerContract,
+  data,
+  web3,
+  setLoading,
+}) => {
   const [amount, setAmount] = useState(null);
+  const history = useHistory();
+
   const deposit = async (e) => {
     e.preventDefault();
     if (comptrollerContract) {
-      await ERC20.methods
-        .approve(comptrollerContract._address, toWei(0.5))
+      setLoading(true);
+      const ERC20 = await initializeERC20(web3, data.symbol);
+      ERC20.methods
+        .approve(comptrollerContract._address, toWei(amount))
         .send({ from: address })
-        .then(async (tx) => {
-          await comptrollerContract.methods
-            .depositERC20(
-              data.name,
-              toWei(amount),
-              data.symbol,
-              data.privatePool
-            )
+        .then((tx) => {
+          comptrollerContract.methods
+            .depositERC20(data.id, toWei(amount), data.privatePool)
             .send({ from: address })
-            .then((tx) => console.log(tx))
-            .catch((err) => console.log(err));
+            .then((tx) => {
+              setLoading(false);
+              const details = [
+                {
+                  key: "Deposit",
+                  value: `${amount} ${data.symbol}`,
+                },
+              ];
+              history.push({
+                pathname: "/complete",
+                state: {
+                  response: tx,
+                  details,
+                },
+              });
+            })
+            .catch((err) => {
+              setLoading(false);
+              const details = [
+                {
+                  key: "Deposit",
+                  value: `${amount} ${data.symbol}`,
+                },
+              ];
+              history.push({
+                pathname: "/complete",
+                state: {
+                  response: { ...err, status: false, from: address },
+                  details,
+                  newPool: false,
+                },
+              });
+            });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setLoading(false);
+          const details = [
+            {
+              key: "Deposit",
+              value: `${amount} ${data.symbol}`,
+            },
+          ];
+          history.push({
+            pathname: "/complete",
+            state: {
+              response: { ...err, status: false, from: address },
+              details,
+            },
+          });
+        });
     }
   };
 
-  const withdrawal = async (e) => {
+  const withdrawal = (e) => {
     e.preventDefault();
-
     if (comptrollerContract) {
-      await comptrollerContract.methods
-        .withdrawERC20(data.name, toWei(amount), data.privatePool)
-        .then((tx) => console.log(tx))
-        .catch((err) => console.log(err));
+      setLoading(true);
+      comptrollerContract.methods
+        .withdrawERC20(data.id, toWei(amount), data.privatePool)
+        .send({ from: address })
+        .then((tx) => {
+          setLoading(false);
+          const details = [
+            {
+              key: "Withdrawal",
+              value: `${amount} ${data.symbol}`,
+            },
+          ];
+          history.push({
+            pathname: "/complete",
+            state: {
+              response: tx,
+              newPool: false,
+              details,
+            },
+          });
+        })
+        .catch((err) => {
+          setLoading(false);
+          const details = [
+            {
+              key: "Deposit",
+              value: `${amount} ${data.symbol}`,
+            },
+          ];
+          history.push({
+            pathname: "/complete",
+            state: {
+              response: { ...err, status: false, from: address },
+              details,
+            },
+          });
+        });
     }
   };
 
@@ -51,7 +162,7 @@ const PoolContent = ({ address, comptrollerContract, data, ERC20 }) => {
           readOnly
         />
         <input
-          value={data.name}
+          value={data.id}
           placeholder="Pool Name"
           className="privatePoolFields"
           readOnly

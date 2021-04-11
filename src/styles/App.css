@@ -93,6 +93,24 @@
   );
 }
 
+.nftBg {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: radial-gradient(
+    76.01% 71.78% at 50% 31.79%,
+    #324159 0%,
+    #303c4f 31.2%,
+    #2e3542 53.67%,
+    #272b33 89.04%,
+    #23252b 100%
+  );
+}
+
 .homeBg {
   margin: 0;
   padding: 0;
@@ -106,6 +124,7 @@
   );
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .privatepoolBg {

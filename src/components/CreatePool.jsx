@@ -1,5 +1,4 @@
-import Web3 from "web3";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import Dropdown from "react-bootstrap/Dropdown";
 
@@ -7,6 +6,7 @@ import "../styles/createPool.css";
 import LoadingAnimation from "./LoadingAnimation";
 
 const CreatePool = ({ web3, address, privatePoolContract }) => {
+  const [tokens, setTokens] = useState([]);
   const [message, setMessage] = useState(null);
   const [tokenName, setTokenName] = useState(null);
   const [poolName, setPoolName] = useState(null);
@@ -14,16 +14,39 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const query = {
+      query: `
+        {
+          tokens {
+            id
+          }
+        }`,
+    };
+
+    const url = "https://api.thegraph.com/subgraphs/name/sksuryan/baby-shark";
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    const options = {
+      method: "POST",
+      headers,
+      body: JSON.stringify(query),
+    };
+
+    fetch(url, options)
+      .then((res) => res.json())
+      .then((data) => setTokens(data.data.tokens))
+      .catch((err) => console.log(err));
+  }, []);
+
   const createPool = (e) => {
     e.preventDefault();
 
     if (web3 && tokenName && poolName && targetPrice) {
-      const hashed = Web3.utils.keccak256(poolName).toString();
-
       const query = {
         query: `
           {
-            pool(id: "${hashed}") {
+            pool(id: "${poolName}") {
               id
             }
           }`,
@@ -44,6 +67,10 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
           if (!result.data.pool) {
             const account = await web3.eth.accounts.create();
             const details = [
+              {
+                key: "Name",
+                value: poolName,
+              },
               {
                 key: "Private Key",
                 value: account.privateKey,
@@ -69,7 +96,7 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
                 history.push({
                   pathname: "/complete",
                   state: {
-                    response: { ...err, status: true, from: address },
+                    response: { ...err, status: false, from: address },
                     details,
                   },
                 });
@@ -101,36 +128,21 @@ const CreatePool = ({ web3, address, privatePoolContract }) => {
       <form className="createPoolForm">
         <Dropdown>
           <Dropdown.Toggle className="selectTokens" id="dropdown-basic">
-            {tokenName ? tokenName : "Select Pair"}
+            {tokenName ? tokenName : "Select"}
           </Dropdown.Toggle>
           <Dropdown.Menu className="super-colors">
-            <Dropdown.Item
-              as="button"
-              onClick={(e) => {
-                e.preventDefault();
-                setTokenName("LINK");
-              }}
-            >
-              LINK/USD
-            </Dropdown.Item>
-            <Dropdown.Item
-              as="button"
-              onClick={(e) => {
-                e.preventDefault();
-                setTokenName("ETH");
-              }}
-            >
-              ETH/USD
-            </Dropdown.Item>
-            <Dropdown.Item
-              as="button"
-              onClick={(e) => {
-                e.preventDefault();
-                setTokenName("WBTC");
-              }}
-            >
-              WBTC/USD
-            </Dropdown.Item>
+            {tokens.map((elt, key) => (
+              <Dropdown.Item
+                as="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setTokenName(elt.id);
+                }}
+                key={key}
+              >
+                {elt.id}
+              </Dropdown.Item>
+            ))}
           </Dropdown.Menu>
         </Dropdown>
 

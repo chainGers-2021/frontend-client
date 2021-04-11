@@ -1,5 +1,10 @@
 .carousel-slide {
+  object-fit: cover;
+}
+
+.carContain {
   width: 100%;
-  align-self: center;
-  justify-self: center;
+  height: 40vh;
+
+  margin-bottom: 16px;
 }
