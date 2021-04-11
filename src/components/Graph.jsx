@@ -17,6 +17,14 @@ const Graph = ({ className, xAxis, yAxis }) => {
               borderWidth: 1,
               lineTension: 0.3,
             },
+            {
+              label: "TrendxYz",
+              data: yAxis,
+              backgroundColor: "#4a9cee49",
+              borderColor: "#4a9cee",
+              borderWidth: 1,
+              lineTension: 0.3,
+            },
           ],
         }}
         options={{
