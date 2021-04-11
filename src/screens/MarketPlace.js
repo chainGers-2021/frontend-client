@@ -20,78 +20,18 @@ const MarketPlace = () => {
         <MarketCarousel />
       </div>
       <div className="card-grid">
-        <ProductCard
-          address="myaddress"
-          pair="ETH/USD/BTC"
-          locked="50000"
-          NGO="UNICEF"
-        />
-        <ProductCard
-          address="myaddress"
-          pair="ETH/USD/BTC"
-          locked="50000"
-          NGO="UNICEF"
-        />
-        <ProductCard
-          address="myaddress"
-          pair="ETH/USD/BTC"
-          locked="50000"
-          NGO="UNICEF"
-        />
-        <ProductCard
-          address="myaddress"
-          pair="ETH/USD/BTC"
-          locked="50000"
-          NGO="UNICEF"
-        />
-        <ProductCard
-          address="myaddress"
-          pair="ETH/USD/BTC"
-          locked="50000"
-          NGO="UNICEF"
-        />
-        <ProductCard
-          address="myaddress"
-          pair="ETH/USD/BTC"
-          locked="50000"
-          NGO="UNICEF"
-        />
-        <ProductCard
-          address="myaddress"
-          pair="ETH/USD/BTC"
-          locked="50000"
-          NGO="UNICEF"
-        />
-        <ProductCard
-          address="myaddress"
-          pair="ETH/USD/BTC"
-          locked="50000"
-          NGO="UNICEF"
-        />
-        <ProductCard
-          address="myaddress"
-          pair="ETH/USD/BTC"
-          locked="50000"
-          NGO="UNICEF"
-        />
-        <ProductCard
-          address="myaddress"
-          pair="ETH/USD/BTC"
-          locked="50000"
-          NGO="UNICEF"
-        />
-        <ProductCard
-          address="myaddress"
-          pair="ETH/USD/BTC"
-          locked="50000"
-          NGO="UNICEF"
-        />
-        <ProductCard
-          address="myaddress"
-          pair="ETH/USD/BTC"
-          locked="50000"
-          NGO="UNICEF"
-        />
+        <ProductCard address="myaddress" NGO="UNICEF" />
+        <ProductCard address="myaddress" NGO="UNICEF" />
+        <ProductCard address="myaddress" NGO="UNICEF" />
+        <ProductCard address="myaddress" NGO="UNICEF" />
+        <ProductCard address="myaddress" NGO="UNICEF" />
+        <ProductCard address="myaddress" NGO="UNICEF" />
+        <ProductCard address="myaddress" NGO="UNICEF" />
+        <ProductCard address="myaddress" NGO="UNICEF" />
+        <ProductCard address="myaddress" NGO="UNICEF" />
+        <ProductCard address="myaddress" NGO="UNICEF" />
+        <ProductCard address="myaddress" NGO="UNICEF" />
+        <ProductCard address="myaddress" NGO="UNICEF" />
       </div>
       <Particles params={particlesConfig} />
     </div>

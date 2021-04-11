@@ -144,7 +144,9 @@ const PrivatePool = ({
                     {data.top5.map((elt, key) => (
                       <tr key={key}>
                         <th scope="row">{elt.user.id}</th>
-                        <td>{elt.totalDeposit}</td>
+                        <td>
+                          {parseFloat(elt.totalDeposit / 10 ** 18).toFixed(5)}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

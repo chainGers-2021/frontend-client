@@ -168,7 +168,7 @@ const PoolContent = ({
           readOnly
         />
         <input
-          value={data.totalDeposit}
+          value={parseFloat(data.totalDeposit / 10 ** 18).toFixed(5)}
           placeholder="Pool Amount"
           className="privatePoolFields"
           id="poolAmount"
