@@ -66,7 +66,7 @@ const Home = ({ address, comptrollerContract, web3 }) => {
             const query = {
               query: `
               {
-                userPools(where: {pool: "${elt.id}"}, orderBy: "totalDeposit", orderDirection: desc, first: 5){
+                userPools(where: {pool: "${elt.id}"}, orderBy: "totalDeposit", orderDirection: desc){
                   user{
                     id
                   }
@@ -100,7 +100,7 @@ const Home = ({ address, comptrollerContract, web3 }) => {
         <Carousel className="d-flex justify-content-center align-items-center w-100 h-100">
           {publicPools.map((elt, i) => (
             <Carousel.Item key={i}>
-              <div className="d-flex w-100 h-100">
+              <div className="home-carousel d-flex w-100 h-100">
                 <Graph
                   className="graph"
                   xAxis={elt.timestamps}

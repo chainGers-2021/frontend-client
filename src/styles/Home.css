@@ -32,4 +32,10 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
+  overflow-y: scroll;
+  margin: auto;
+}
+
+.home-carousel {
+  margin-top: 350px;
 }
