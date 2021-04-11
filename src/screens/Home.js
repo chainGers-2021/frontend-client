@@ -66,7 +66,7 @@ const Home = ({ address, comptrollerContract, web3 }) => {
             const query = {
               query: `
               {
-                userPools(where: {pool: "${elt.id}"}, orderBy: "totalDeposit", orderDirection: desc){
+                userPools(where: {pool: "${elt.id}"}, orderBy: "totalDeposit", orderDirection: desc, first: 5){
                   user{
                     id
                   }
