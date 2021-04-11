@@ -64,7 +64,7 @@ const PrivatePool = ({
               timestamps
               privatePool
             }
-            userPools(where: {pool: "${data.id}"}, orderBy: "totalDeposit", orderDirection: desc){
+            userPools(where: {pool: "${data.id}"}, orderBy: "totalDeposit", orderDirection: desc, first: 5){
               user{
                 id
               }
