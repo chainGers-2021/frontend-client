@@ -37,7 +37,7 @@
 }
 
 .logo {
-  height: 50px;
+  height: 100px;
 }
 .navBar {
   position: absolute;
@@ -90,7 +90,7 @@
   /* top: 30%; */
   /* left: 35%; */
   display: inline-block;
-  margin-left: 30em;
+  margin-left: 50em;
   color: azure;
 
   display: flex;
