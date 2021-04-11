@@ -175,6 +175,13 @@ const PoolContent = ({
           readOnly
         />
         <input
+          value={data.targetPrice + " $"}
+          placeholder="Target Price"
+          className="privatePoolFields"
+          id="poolAmount"
+          readOnly
+        />
+        <input
           placeholder="Amount"
           id="privateTargetPrice"
           value={amount ? amount : ""}

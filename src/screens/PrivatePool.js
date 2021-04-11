@@ -63,6 +63,7 @@ const PrivatePool = ({
               history
               timestamps
               privatePool
+              targetPrice
             }
             userPools(where: {pool: "${data.id}"}, orderBy: "totalDeposit", orderDirection: desc, first: 5){
               user{

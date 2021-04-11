@@ -45,6 +45,7 @@ const Home = ({ address, comptrollerContract, web3 }) => {
             totalDeposit
             symbol
             privatePool
+            targetPrice
           }
         }`,
     };

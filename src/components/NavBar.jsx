@@ -44,6 +44,7 @@ const NavBar = ({ handleConnect, accounts }) => {
               history
               timestamps
               privatePool
+              targetPrice
             }
             userPools(where: {pool: "${privatePool}"}, orderBy: "totalDeposit", orderDirection: desc, first: 5){
               user{
